@@ -76,6 +76,8 @@ public class Dataxhandler implements Plugin {
 
     }
 
+    //TODO: need a method for getting the initiator-nick. Is this already implemented in the bot?
+
     private boolean isAvailable(boolean b) {
         isAvailable = b;
         return isAvailable;
