@@ -19,6 +19,7 @@ public class Dataxhandler implements Plugin {
     private ArrayList<String> queue = new ArrayList<String>();
     private boolean isAvailable;
     private Wand wand;
+    private PrivMsgEvent e;
     private final String DESCRIPTION = "Queuehandler for Bank- og Økonomikomiteen (banKom) in Mammut Datax";
     private final String DATAXTRIGGER = "!datax";
     private Flags flags;
@@ -26,7 +27,10 @@ public class Dataxhandler implements Plugin {
     /**
      * The nick of the person invoking the command !datax
      */
-    private String initiator;
+    private String initiator = e.getSender();
+
+    //TODO: use SimpleIO as example for saving the queue.
+
 
     public Dataxhandler() {
 
@@ -67,7 +71,7 @@ public class Dataxhandler implements Plugin {
                     printMessage("Datax is now ready for use by " + getDataxholder());
                     isAvailable(false);
                 } else {
-                    printMessage("Datax is now ready for use");
+                    printMessage("Datax is now ready for use.");
                     isAvailable(true);
                 }
 
@@ -75,8 +79,6 @@ public class Dataxhandler implements Plugin {
         }
 
     }
-
-    //TODO: need a method for getting the initiator-nick. Is this already implemented in the bot?
 
     private boolean isAvailable(boolean b) {
         isAvailable = b;
