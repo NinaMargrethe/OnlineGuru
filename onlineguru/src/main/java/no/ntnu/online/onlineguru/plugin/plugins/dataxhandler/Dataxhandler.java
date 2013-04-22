@@ -29,7 +29,7 @@ public class Dataxhandler implements Plugin {
      */
     private String initiator = e.getSender();
 
-    //TODO: use SimpleIO as example for saving the queue.
+    //TODO: use SimpleIO as example for saving the queue. example usage in VerifySettings
 
 
     public Dataxhandler() {
