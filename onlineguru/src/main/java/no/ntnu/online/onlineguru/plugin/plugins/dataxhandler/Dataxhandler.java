@@ -24,7 +24,7 @@ public class Dataxhandler implements Plugin {
     private Flags flags;
     private String dataxholder = queue.get(0);
     /**
-     * The nick of the person invoking the command !dataz
+     * The nick of the person invoking the command !datax
      */
     private String initiator;
 
@@ -73,8 +73,6 @@ public class Dataxhandler implements Plugin {
 
 
         }
-
-        wand.
 
     }
 
