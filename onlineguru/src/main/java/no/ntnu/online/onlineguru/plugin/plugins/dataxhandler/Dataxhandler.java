@@ -17,12 +17,16 @@ import java.util.ArrayList;
 public class Dataxhandler implements Plugin {
 
     private ArrayList<String> queue = new ArrayList<String>();
-    private boolean isBusy;
+    private boolean isAvailable;
     private Wand wand;
     private final String DESCRIPTION = "Queuehandler for Bank- og Økonomikomiteen (banKom) in Mammut Datax";
     private final String DATAXTRIGGER = "!datax";
     private Flags flags;
-    private String nick = getNick();
+    private String dataxholder = queue.get(0);
+    /**
+     * The nick of the person invoking the command !dataz
+     */
+    private String initiator;
 
     public Dataxhandler() {
 
@@ -46,15 +50,42 @@ public class Dataxhandler implements Plugin {
         }
     }
 
-
     private void queueAction(String[] message) {
 
         switch (flags) {
             case ON:
-                if (isBusy) printMessage("Datax is busy by " + nick);
+                if (!queue.isEmpty()) {
+                    queue.add(initiator);
+                    printMessage("Datax is occupid by " + getDataxholder() + ". You are now queued as number " + queue.size());
+                } else {
+                    queue.add(initiator);
+                    printMessage("Datax is now occupied by " + getDataxholder());
+                }
+            case OFF:
+                if (queue.size() > 1 && initiator == getDataxholder()) {
+                    queue.remove(0);
+                    printMessage("Datax is now ready for use by " + getDataxholder());
+                    isAvailable(false);
+                } else {
+                    printMessage("Datax is now ready for use");
+                    isAvailable(true);
+                }
+
 
         }
 
+        wand.
+
+    }
+
+    private boolean isAvailable(boolean b) {
+        isAvailable = b;
+        return isAvailable;
+    }
+
+    private boolean isAvailable(ArrayList queue) {
+        isAvailable = queue.isEmpty();
+        return isAvailable;
     }
 
     private boolean isMessageForPlugin(String[] message) {
@@ -67,5 +98,13 @@ public class Dataxhandler implements Plugin {
 
     public void addWand(Wand wand) {
         this.wand = wand;
+    }
+
+    public String getDataxholder() {
+        if (!queue.isEmpty()) {
+            dataxholder = queue.get(0);
+        } else dataxholder = "none";
+
+        return dataxholder;
     }
 }
